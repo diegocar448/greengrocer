@@ -31,8 +31,15 @@ class SignInScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    //Email
-                    TextFormField(),
+                    //Email aqui vamos estilizar o campo
+                    TextFormField(
+                      decoration: InputDecoration(
+                        isDense: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                      ),
+                    ),
                     //Senha
                     TextFormField(),
                   ],

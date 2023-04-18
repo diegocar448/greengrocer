@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        //definir padrão de cor (exemplo borda do input)
+        primarySwatch: Colors.green,
       ),
       debugShowCheckedModeBanner: false,
       home: const SignInScreen(),
