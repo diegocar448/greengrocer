@@ -33,7 +33,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 child: Column(
                   //adicionamos  const pq o constructor do CustomTextField é const
-                  children: const [
+                  children: [
                     //Campo Email
                     CustomTextField(
                       icon: Icons.email,
@@ -43,7 +43,7 @@ class SignInScreen extends StatelessWidget {
                     CustomTextField(
                       icon: Icons.lock,
                       label: 'Senha',
-                      isObscure: true,
+                      isSecret: true,
                     ),
                   ],
                 )),
