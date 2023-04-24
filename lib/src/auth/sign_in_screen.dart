@@ -32,18 +32,52 @@ class SignInScreen extends StatelessWidget {
                   ),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   //adicionamos  const pq o constructor do CustomTextField é const
                   children: [
                     //Campo Email
-                    CustomTextField(
+                    const CustomTextField(
                       icon: Icons.email,
                       label: 'Email',
                     ),
                     //Campo Senha
-                    CustomTextField(
+                    const CustomTextField(
                       icon: Icons.lock,
                       label: 'Senha',
                       isSecret: true,
+                    ),
+                    //SizedBox para definir altura e largura
+                    SizedBox(
+                      height: 50,
+                      //Nosso botão
+                      child: ElevatedButton(
+                        //Estilização do botão ElevatedButton
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18)),
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          'Entrar',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+
+                    //Estrutura do "esqueceu a senha"
+                    //alinhar o texto do botão a direita
+                    Align(
+                      alignment: Alignment.centerRight,
+                      //Aqui temos o nosso botão esqueceu senha
+                      child: TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          'Esqueceu a senha?',
+                          style: TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 )),
