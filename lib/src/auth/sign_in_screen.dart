@@ -12,76 +12,125 @@ class SignInScreen extends StatelessWidget {
       backgroundColor: Colors.green,
       body: Column(
         children: [
-          //sempre usa-lo antes de um Container
+          // sempre usa-lo antes de um Container
           Expanded(
             child: Container(
               color: Colors.red,
             ),
           ),
-          Expanded(
-            child: Container(
-                //usamos os symmetric para poder dar um espaçamento tanto vertical como tbm horizontal
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 32,
-                  vertical: 40,
+          Container(
+              // usamos os symmetric para poder dar um espaçamento tanto vertical como tbm horizontal
+              padding: const EdgeInsets.symmetric(
+                horizontal: 32,
+                vertical: 40,
+              ),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(45),
                 ),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(45),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                // adicionamos  const pq o constructor do CustomTextField é const
+                children: [
+                  // Campo Email
+                  const CustomTextField(
+                    icon: Icons.email,
+                    label: 'Email',
                   ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  //adicionamos  const pq o constructor do CustomTextField é const
-                  children: [
-                    //Campo Email
-                    const CustomTextField(
-                      icon: Icons.email,
-                      label: 'Email',
+                  // Campo Senha
+                  const CustomTextField(
+                    icon: Icons.lock,
+                    label: 'Senha',
+                    isSecret: true,
+                  ),
+                  // Nosso botão de entrar
+                  // SizedBox para definir altura e largura
+                  SizedBox(
+                    height: 50,
+                    child: ElevatedButton(
+                      // Estilização do botão ElevatedButton
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18)),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        'Entrar',
+                        style: TextStyle(fontSize: 18),
+                      ),
                     ),
-                    //Campo Senha
-                    const CustomTextField(
-                      icon: Icons.lock,
-                      label: 'Senha',
-                      isSecret: true,
-                    ),
-                    //SizedBox para definir altura e largura
-                    SizedBox(
-                      height: 50,
-                      //Nosso botão
-                      child: ElevatedButton(
-                        //Estilização do botão ElevatedButton
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18)),
-                        ),
-                        onPressed: () {},
-                        child: const Text(
-                          'Entrar',
-                          style: TextStyle(fontSize: 18),
+                  ),
+
+                  // Estrutura do "esqueceu a senha"
+                  // Alinhar o texto do botão a direita
+                  Align(
+                    alignment: Alignment.centerRight,
+                    // Aqui temos o nosso botão esqueceu senha
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'Esqueceu a senha?',
+                        style: TextStyle(
+                          color: Colors.red,
                         ),
                       ),
                     ),
-
-                    //Estrutura do "esqueceu a senha"
-                    //alinhar o texto do botão a direita
-                    Align(
-                      alignment: Alignment.centerRight,
-                      //Aqui temos o nosso botão esqueceu senha
-                      child: TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          'Esqueceu a senha?',
-                          style: TextStyle(
-                            color: Colors.red,
+                  ),
+                  // Divisor
+                  // Usamos o Row para colocar um elemeto ao lado do outro
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          // divisor das widgets
+                          child: Divider(
+                            color: Colors.grey.withAlpha(90),
+                            // thickness é a espessura do divisor (da linha)
+                            thickness: 2,
                           ),
                         ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Text('Ou  '),
+                        ),
+                        Expanded(
+                          // divisor das widgets
+                          child: Divider(
+                            color: Colors.grey.withAlpha(90),
+                            // thickness é a espessura do divisor (da linha)
+                            thickness: 2,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Botão de novo usuário
+                  SizedBox(
+                    height: 50,
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        side: const BorderSide(
+                          width: 2,
+                          color: Colors.green,
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        'Criar Contar',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
                       ),
                     ),
-                  ],
-                )),
-          ),
+                  )
+                ],
+              )),
         ],
       ),
     );
