@@ -52,6 +52,7 @@ class SignInScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                     child: AnimatedTextKit(
+                      pause: Duration.zero,
                       //animação em loop repeatForever:true
                       repeatForever: true,
                       animatedTexts: [
