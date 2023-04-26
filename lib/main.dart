@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         //definir padrão de cor (exemplo borda do input)
         primarySwatch: Colors.green,
+        scaffoldBackgroundColor: Colors.white.withAlpha(190),
       ),
       debugShowCheckedModeBanner: false,
       home: const SignInScreen(),
