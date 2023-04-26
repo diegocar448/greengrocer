@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextField extends StatefulWidget {
   final IconData icon;
   final String label;
   final bool isSecret;
+  final List<TextInputFormatter>? inputFormatters;
+  final List<TextInputFormatter>? phoneFormatters;
 
   //como os atributos acima são final, então o nosso construtor será um const
   const CustomTextField({
@@ -12,6 +15,8 @@ class CustomTextField extends StatefulWidget {
     required this.icon,
     required this.label,
     this.isSecret = false,
+    this.inputFormatters,
+    this.phoneFormatters,
   }) : super(key: key);
 
   @override
@@ -35,6 +40,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
         Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
+        // aqui adicionamos a nossa mascara regex
+        inputFormatters: widget.inputFormatters,
         //aqui definimos se o texto inserido será visualizado ou não
         obscureText: isObscure,
         decoration: InputDecoration(
