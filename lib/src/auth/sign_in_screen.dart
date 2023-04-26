@@ -129,7 +129,6 @@ class SignInScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-
                       // Estrutura do "esqueceu a senha"
                       // Alinhar o texto do botão a direita
                       Align(
