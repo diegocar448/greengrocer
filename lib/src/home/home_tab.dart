@@ -1,5 +1,8 @@
-import 'package:flutter/material.dart';
+//import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 
+import 'package:flutter/material.dart';
+//import 'package:badges/badges.dart' as packageBadge; //<=== AQUI O ALIAS
 import '../config/custom_colors.dart';
 
 class HomeTab extends StatelessWidget {
@@ -36,13 +39,26 @@ class HomeTab extends StatelessWidget {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.shopping_cart,
-              color: CustomColors.customSwatchColor,
+          Padding(
+            padding: const EdgeInsets.only(top: 15, right: 15),
+            child: GestureDetector(
+              onTap: () {},
+              child: badges.Badge(
+                badgeColor: CustomColors.customContrastColor,
+                badgeContent: const Text(
+                  '2',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+                child: Icon(
+                  Icons.shopping_cart,
+                  color: CustomColors.customSwatchColor,
+                ),
+              ),
             ),
-          )
+          ),
         ],
       ),
       // Campo pesquisa
