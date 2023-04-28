@@ -16,13 +16,6 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   //const HomeTab({Key? key}) : super(key: key);
-  List<String> categories = [
-    'Frutas',
-    'Grãos',
-    'Verduras',
-    'Temperos',
-    'Cereais',
-  ];
 
   String selectedCategory = 'Frutas';
 
