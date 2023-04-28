@@ -4,7 +4,7 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 //import 'package:badges/badges.dart' as packageBadge; //<=== AQUI O ALIAS
 
-import '../config/custom_colors.dart';
+import '../../config/custom_colors.dart';
 import 'components/category_tile.dart';
 
 class HomeTab extends StatefulWidget {
