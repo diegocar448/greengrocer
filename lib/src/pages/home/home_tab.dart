@@ -2,7 +2,7 @@
 import 'package:badges/badges.dart' as badges;
 
 import 'package:flutter/material.dart';
-import 'package:greengrocer/src/models/item_model.dart';
+
 import 'package:greengrocer/src/pages/home/components/item_tile.dart';
 //import 'package:badges/badges.dart' as packageBadge; //<=== AQUI O ALIAS
 
