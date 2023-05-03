@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'GreenGrocer',
       theme: ThemeData(
         //definir padrão de cor (exemplo borda do input)
         primarySwatch: Colors.green,
