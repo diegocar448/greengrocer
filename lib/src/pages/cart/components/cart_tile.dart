@@ -59,9 +59,9 @@ class _CartTileState extends State<CartTile> {
           suffixText: widget.cartItem.item.unit,
           value: widget.cartItem.quantity,
           result: (quantity) {
-            widget.cartItem.quantity = quantity;
             /* alterar o estado de quantity do cartItem */
             setState(() {
+              widget.cartItem.quantity = quantity;
               if (quantity == 0) {
                 /* remover item do carrinho */
                 widget.remove(widget.cartItem);
