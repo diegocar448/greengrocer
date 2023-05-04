@@ -30,6 +30,8 @@ class QuantityWidget extends StatelessWidget {
         ],
       ),
       child: Row(
+        /* Aqui adicionamos o MainAxisSize.min para pegar o valor mais baixo possível evitando overflow */
+        mainAxisSize: MainAxisSize.min,
         children: [
           _QuantityButton(
             icon: Icons.remove,

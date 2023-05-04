@@ -8,4 +8,7 @@ class CartItemModel {
     required this.item,
     required this.quantity,
   });
+
+  // Pegar o valor total do carrinho
+  double totalPrice() => item.price * quantity;
 }
