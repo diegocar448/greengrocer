@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import '../../config/custom_colors.dart';
 
 import '../base/base_screen.dart';
-import '../home/components/custom_text_field.dart';
+
+import 'package:greengrocer/src/pages/common_widgets/custom_text_field.dart';
 import 'sign_up_screen.dart';
 
 class SignInScreen extends StatelessWidget {

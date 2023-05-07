@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greengrocer/src/pages/cart/cart_tab.dart';
+import 'package:greengrocer/src/pages/profile/profile_tab.dart';
 
 import '../home/home_tab.dart';
 
@@ -26,7 +27,7 @@ class _BaseScreenState extends State<BaseScreen> {
           const HomeTab(),
           const CartTab(),
           Container(color: Colors.orange),
-          Container(color: Colors.purple),
+          const ProfileTab(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
