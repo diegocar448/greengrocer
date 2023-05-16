@@ -7,6 +7,8 @@ class CustomTextField extends StatefulWidget {
   final bool isSecret;
   final List<TextInputFormatter>? inputFormatters;
   final List<TextInputFormatter>? phoneFormatters;
+  final String? initialValue;
+  final bool readOnly;
 
   //como os atributos acima são final, então o nosso construtor será um const
   const CustomTextField({
@@ -17,6 +19,8 @@ class CustomTextField extends StatefulWidget {
     this.isSecret = false,
     this.inputFormatters,
     this.phoneFormatters,
+    this.initialValue,
+    this.readOnly = false,
   }) : super(key: key);
 
   @override
@@ -40,6 +44,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
         Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
+        readOnly: widget.readOnly,
+        /* Vai adicionar o texto no nosso campo de texto assim que for criado */
+        initialValue: widget.initialValue,
+
         // aqui adicionamos a nossa mascara regex
         inputFormatters: widget.inputFormatters,
         //aqui definimos se o texto inserido será visualizado ou não
