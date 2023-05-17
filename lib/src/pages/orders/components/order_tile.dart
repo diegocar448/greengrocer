@@ -138,10 +138,10 @@ class OrderTile extends StatelessWidget {
 
 class _OrderItemWidget extends StatelessWidget {
   const _OrderItemWidget({
-    super.key,
+    Key? key,
     required this.utilsServices,
     required this.orderItem,
-  });
+  }) : super(key: key);
 
   final UtilsServices utilsServices;
   final CartItemModel orderItem;
