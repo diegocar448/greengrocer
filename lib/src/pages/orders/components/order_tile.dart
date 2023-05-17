@@ -41,6 +41,7 @@ class OrderTile extends StatelessWidget {
           ),
           /** Aqui adicionamos uma borda como um model de um quadro */
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             /** 
              *  com o IntrinsicHeight terá um crescimento intrínseco para pode visualizar a barra vertical
@@ -89,6 +90,45 @@ class OrderTile extends StatelessWidget {
                 ],
               ),
             ),
+
+            //Total
+            Text.rich(
+              TextSpan(
+                /** aplicar style aqui irá refletir sobre todo os elementos filhos */
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
+                children: [
+                  const TextSpan(
+                    text: 'Total ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: utilsServices.priceToCurrency(order.total),
+                  ),
+                ],
+              ),
+            ),
+
+            //Botão pagamento
+            Visibility(
+              visible: order.status == 'pending_payment',
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                onPressed: () {},
+                icon: Image.asset(
+                  'assets/app_images/pix.png',
+                  height: 18,
+                ),
+                label: const Text('Ver QR Code Pix'),
+              ),
+            )
           ],
         ),
       ),
