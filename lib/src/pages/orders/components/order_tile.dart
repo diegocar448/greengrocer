@@ -22,7 +22,9 @@ class OrderTile extends StatelessWidget {
       ),
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        /** widget abre e fecha */
         child: ExpansionTile(
+          initiallyExpanded: order.status == 'pending_payment' ? false : true,
           title: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,21 +42,27 @@ class OrderTile extends StatelessWidget {
           /** Aqui adicionamos uma borda como um model de um quadro */
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           children: [
-            SizedBox(
-              height: 150,
+            /** 
+             *  com o IntrinsicHeight terá um crescimento intrínseco para pode visualizar a barra vertical
+             *  assim vai permitir o seu crescimento sem ocorrer um overflow
+             * */
+            IntrinsicHeight(
               child: Row(
                 children: [
                   // Lista de produtos
                   Expanded(
                     /* Aqui vai (flex) determinar a proporção do tamanho do Expanded */
                     flex: 3,
-                    child: ListView(
-                      children: order.items.map((orderItem) {
-                        return _OrderItemWidget(
-                          utilsServices: utilsServices,
-                          orderItem: orderItem,
-                        );
-                      }).toList(),
+                    child: SizedBox(
+                      height: 150,
+                      child: ListView(
+                        children: order.items.map((orderItem) {
+                          return _OrderItemWidget(
+                            utilsServices: utilsServices,
+                            orderItem: orderItem,
+                          );
+                        }).toList(),
+                      ),
                     ),
                   ),
 
@@ -105,7 +113,7 @@ class _OrderItemWidget extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            '${orderItem.quantity} ${orderItem.item.unit}',
+            '${orderItem.quantity} ${orderItem.item.unit} ',
             style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
