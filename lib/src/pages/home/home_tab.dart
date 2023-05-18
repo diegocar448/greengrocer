@@ -27,7 +27,7 @@ class _HomeTabState extends State<HomeTab> {
   // Chave global obrigatoria usada no plugin add_to_cart_animation
   GlobalKey<CartIconKey> globalKeyCartItems = GlobalKey<CartIconKey>();
 
-  /** Sera usado sempre que a imagem for clicada, dispara como um evento */
+  ///  Sera usado sempre que a imagem for clicada, dispara como um evento */
   void itemSelectedCartAnimations(GlobalKey gkImage) {
     runAddToCardAnimation(gkImage);
   }
