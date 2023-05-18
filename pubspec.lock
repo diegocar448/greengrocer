@@ -5,10 +5,10 @@ packages:
     dependency: "direct main"
     description:
       name: add_to_cart_animation
-      sha256: af4b914d090edabe0dff661ba4c2f99ceaf72ea12df3f435c73d790fd6e3d945
+      sha256: f77f0c7b6a92468b68a689309d106514b02f9128a4a58f3e57f64d3e879f02a7
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.3"
+    version: "0.0.7"
   animated_text_kit:
     dependency: "direct main"
     description:
