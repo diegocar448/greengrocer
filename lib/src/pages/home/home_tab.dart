@@ -6,6 +6,7 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 
 import 'package:greengrocer/src/pages/home/components/item_tile.dart';
+import 'package:greengrocer/src/services/utils_services.dart';
 //import 'package:badges/badges.dart' as packageBadge; //<=== AQUI O ALIAS
 
 import '../../config/custom_colors.dart';
@@ -34,6 +35,8 @@ class _HomeTabState extends State<HomeTab> {
 
   late Function(GlobalKey) runAddToCardAnimation;
 
+  final UtilsServices utilsServices = UtilsServices();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,32 +45,36 @@ class _HomeTabState extends State<HomeTab> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: Text.rich(
-          TextSpan(
-            style: const TextStyle(
-              fontSize: 30,
+        title: GestureDetector(
+          onTap: () {
+            utilsServices.showToast(message: 'Teste', isError: true);
+          },
+          child: Text.rich(
+            TextSpan(
+              style: const TextStyle(
+                fontSize: 30,
+              ),
+              children: [
+                TextSpan(
+                  text: 'Green',
+                  style: TextStyle(
+                    color: CustomColors.customSwatchColor,
+                  ),
+                ),
+                TextSpan(
+                  text: 'grocer',
+                  style: TextStyle(
+                    color: CustomColors.customContrastColor,
+                  ),
+                ),
+              ],
             ),
-            children: [
-              TextSpan(
-                text: 'Green',
-                style: TextStyle(
-                  color: CustomColors.customSwatchColor,
-                ),
-              ),
-              TextSpan(
-                text: 'grocer',
-                style: TextStyle(
-                  color: CustomColors.customContrastColor,
-                ),
-              ),
-            ],
           ),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(top: 15, right: 15),
             child: GestureDetector(
-              onTap: () {},
               child: badges.Badge(
                 badgeColor: CustomColors.customContrastColor,
                 badgeContent: const Text(
