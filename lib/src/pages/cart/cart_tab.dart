@@ -105,6 +105,9 @@ class _CartTabState extends State<CartTab> {
                                 order: app_data.orders.first,
                               );
                             });
+                      } else {
+                        utilsServices.showToast(
+                            message: 'Pedido não confirmado', isError: true);
                       }
                     },
                     child: const Text(

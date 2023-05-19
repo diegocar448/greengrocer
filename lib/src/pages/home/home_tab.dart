@@ -6,6 +6,7 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 
 import 'package:greengrocer/src/pages/home/components/item_tile.dart';
+import 'package:greengrocer/src/services/utils_services.dart';
 //import 'package:badges/badges.dart' as packageBadge; //<=== AQUI O ALIAS
 
 import '../../config/custom_colors.dart';
@@ -32,6 +33,8 @@ class _HomeTabState extends State<HomeTab> {
     runAddToCardAnimation(gkImage);
   }
 
+  final UtilsServices utilsServices = UtilsServices();
+
   late Function(GlobalKey) runAddToCardAnimation;
 
   @override
@@ -42,25 +45,33 @@ class _HomeTabState extends State<HomeTab> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: Text.rich(
-          TextSpan(
-            style: const TextStyle(
-              fontSize: 30,
+        title: GestureDetector(
+          onTap: () {
+            utilsServices.showToast(
+              message: 'Outro Teste 2',
+              isError: false,
+            );
+          },
+          child: Text.rich(
+            TextSpan(
+              style: const TextStyle(
+                fontSize: 30,
+              ),
+              children: [
+                TextSpan(
+                  text: 'Green',
+                  style: TextStyle(
+                    color: CustomColors.customSwatchColor,
+                  ),
+                ),
+                TextSpan(
+                  text: 'grocer',
+                  style: TextStyle(
+                    color: CustomColors.customContrastColor,
+                  ),
+                ),
+              ],
             ),
-            children: [
-              TextSpan(
-                text: 'Green',
-                style: TextStyle(
-                  color: CustomColors.customSwatchColor,
-                ),
-              ),
-              TextSpan(
-                text: 'grocer',
-                style: TextStyle(
-                  color: CustomColors.customContrastColor,
-                ),
-              ),
-            ],
           ),
         ),
         actions: [
