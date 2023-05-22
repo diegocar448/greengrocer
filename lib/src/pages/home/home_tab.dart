@@ -4,6 +4,7 @@ import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:badges/badges.dart' as badges;
 
 import 'package:flutter/material.dart';
+import 'package:greengrocer/src/pages/common_widgets/app_name_widget.dart';
 
 import 'package:greengrocer/src/pages/home/components/item_tile.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
@@ -52,27 +53,7 @@ class _HomeTabState extends State<HomeTab> {
               isError: false,
             );
           },
-          child: Text.rich(
-            TextSpan(
-              style: const TextStyle(
-                fontSize: 30,
-              ),
-              children: [
-                TextSpan(
-                  text: 'Green',
-                  style: TextStyle(
-                    color: CustomColors.customSwatchColor,
-                  ),
-                ),
-                TextSpan(
-                  text: 'grocer',
-                  style: TextStyle(
-                    color: CustomColors.customContrastColor,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          child: const AppNameWidget(),
         ),
         actions: [
           Padding(
