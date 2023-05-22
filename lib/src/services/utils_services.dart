@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -21,7 +21,7 @@ class UtilsServices {
 
   // apresentar o toast
   void showToast({required String message, bool isError = false}) {
-    Fluttertoast.showToast(
+    /* Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
@@ -33,6 +33,6 @@ class UtilsServices {
       fontSize: 14,
       // Adicione essa propriedade para exibir o botão de fechar no toast
       webShowClose: true,
-    );
+    ); */
   }
 }
