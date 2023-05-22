@@ -89,11 +89,12 @@ class ItemTile extends StatelessWidget {
         Positioned(
           top: 4,
           right: 4,
-          child: GestureDetector(
+          //child: GestureDetector(
+          child: InkWell(
             onTap: () {
               cartAnimationMethod(imageGk);
             },
-            child: Container(
+            child: Ink(
               height: 40,
               width: 35,
               decoration: BoxDecoration(
