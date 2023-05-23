@@ -40,6 +40,7 @@ class SignInScreen extends StatelessWidget {
                     //Aqui adicionamos a lista de textos animados
                     SizedBox(
                       height: 30,
+                      // Categorias
                       // DefaultTextStyle com ele um TextStyle para todos os texts FadeAnimatedText
                       child: DefaultTextStyle(
                         style: const TextStyle(
