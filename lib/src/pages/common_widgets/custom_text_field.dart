@@ -9,6 +9,7 @@ class CustomTextField extends StatefulWidget {
   final List<TextInputFormatter>? phoneFormatters;
   final String? initialValue;
   final bool readOnly;
+  final String? Function(String?)? validator;
 
   //como os atributos acima são final, então o nosso construtor será um const
   const CustomTextField({
@@ -21,6 +22,7 @@ class CustomTextField extends StatefulWidget {
     this.phoneFormatters,
     this.initialValue,
     this.readOnly = false,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -52,6 +54,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
         inputFormatters: widget.inputFormatters,
         //aqui definimos se o texto inserido será visualizado ou não
         obscureText: isObscure,
+        /* Loca que fará a validação */
+        validator: widget.validator,
         decoration: InputDecoration(
           //aqui adicinamos o Icone no InputDecoration
           prefixIcon: Icon(widget.icon),

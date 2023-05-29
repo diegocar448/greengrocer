@@ -10,7 +10,9 @@ import 'package:greengrocer/src/pages/common_widgets/custom_text_field.dart';
 
 class SignInScreen extends StatelessWidget {
   //const SignInScreen({super.key});
-  const SignInScreen({Key? key}) : super(key: key);
+  SignInScreen({Key? key}) : super(key: key);
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -77,110 +79,140 @@ class SignInScreen extends StatelessWidget {
                       top: Radius.circular(45),
                     ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    // adicionamos  const pq o constructor do CustomTextField é const
-                    children: [
-                      // Campo Email
-                      const CustomTextField(
-                        icon: Icons.email,
-                        label: 'Email',
-                      ),
-                      // Campo Senha
-                      const CustomTextField(
-                        icon: Icons.lock,
-                        label: 'Senha',
-                        isSecret: true,
-                      ),
-                      // Nosso botão de entrar
-                      // SizedBox para definir altura e largura
-                      SizedBox(
-                        height: 50,
-                        child: ElevatedButton(
-                          // Estilização do botão ElevatedButton
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18)),
-                          ),
-                          onPressed: () {
-                            Get.offNamed(PagesRoutes.baseRoute);
+                  /** Form é necessário para a nossa validação */
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      // adicionamos  const pq o constructor do CustomTextField é const
+                      children: [
+                        // Campo Email
+                        CustomTextField(
+                          icon: Icons.email,
+                          label: 'Email',
+                          validator: (email) {
+                            if (email == null || email.isEmpty) {
+                              return 'Digite seu email!';
+                            }
+
+                            if (!email.isEmail) {
+                              return 'Digite um email válido!';
+                            }
+                            return null;
                           },
-                          child: const Text(
-                            'Entrar',
-                            style: TextStyle(fontSize: 18),
-                          ),
                         ),
-                      ),
-                      // Estrutura do "esqueceu a senha"
-                      // Alinhar o texto do botão a direita
-                      Align(
-                        alignment: Alignment.centerRight,
-                        // Aqui temos o nosso botão esqueceu senha
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Esqueceu a senha?',
-                            style: TextStyle(
-                              color: CustomColors.customContrastColor,
+                        // Campo Senha
+                        CustomTextField(
+                          icon: Icons.lock,
+                          label: 'Senha',
+                          validator: (password) {
+                            if (password == null || password.isEmpty) {
+                              return 'Digite sua senha!';
+                            }
+                            if (password.length < 7) {
+                              return 'Digite uma senha com pelo menos 7 caracteres.';
+                            }
+
+                            return null;
+                          },
+                          isSecret: true,
+                        ),
+                        // Nosso botão de entrar
+                        // SizedBox para definir altura e largura
+                        SizedBox(
+                          height: 50,
+                          child: ElevatedButton(
+                            // Estilização do botão ElevatedButton
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18)),
+                            ),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                print('Todos os campos estão validos!');
+                              } else {
+                                print('Campos não validos!');
+                              }
+
+                              //Get.offNamed(PagesRoutes.baseRoute);
+                            },
+                            child: const Text(
+                              'Entrar',
+                              style: TextStyle(fontSize: 18),
                             ),
                           ),
                         ),
-                      ),
-                      // Divisor
-                      // Usamos o Row para colocar um elemeto ao lado do outro
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              // divisor das widgets
-                              child: Divider(
-                                color: Colors.grey.withAlpha(90),
-                                // thickness é a espessura do divisor (da linha)
-                                thickness: 2,
+                        // Estrutura do "esqueceu a senha"
+                        // Alinhar o texto do botão a direita
+                        Align(
+                          alignment: Alignment.centerRight,
+                          // Aqui temos o nosso botão esqueceu senha
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Esqueceu a senha?',
+                              style: TextStyle(
+                                color: CustomColors.customContrastColor,
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 15),
-                              child: Text('Ou  '),
-                            ),
-                            Expanded(
-                              // divisor das widgets
-                              child: Divider(
-                                color: Colors.grey.withAlpha(90),
-                                // thickness é a espessura do divisor (da linha)
-                                thickness: 2,
+                          ),
+                        ),
+                        // Divisor
+                        // Usamos o Row para colocar um elemeto ao lado do outro
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                // divisor das widgets
+                                child: Divider(
+                                  color: Colors.grey.withAlpha(90),
+                                  // thickness é a espessura do divisor (da linha)
+                                  thickness: 2,
+                                ),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                child: Text('Ou  '),
+                              ),
+                              Expanded(
+                                // divisor das widgets
+                                child: Divider(
+                                  color: Colors.grey.withAlpha(90),
+                                  // thickness é a espessura do divisor (da linha)
+                                  thickness: 2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Botão de novo usuário
+                        SizedBox(
+                          height: 50,
+                          child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                              side: const BorderSide(
+                                width: 2,
+                                color: Colors.green,
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      // Botão de novo usuário
-                      SizedBox(
-                        height: 50,
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            side: const BorderSide(
-                              width: 2,
-                              color: Colors.green,
+                            onPressed: () {
+                              // Adicionar mais uma tela na pilha de screens
+                              Get.toNamed(PagesRoutes.signUpRoute);
+                            },
+                            child: const Text(
+                              'Criar Contar',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
                             ),
                           ),
-                          onPressed: () {
-                            // Adicionar mais uma tela na pilha de screens
-                            Get.toNamed(PagesRoutes.signUpRoute);
-                          },
-                          child: const Text(
-                            'Criar Contar',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   )),
             ],
           ),
