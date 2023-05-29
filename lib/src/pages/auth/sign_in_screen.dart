@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:greengrocer/src/pages/auth/controller/auth_controller.dart';
 import 'package:greengrocer/src/pages/common_widgets/app_name_widget.dart';
 import 'package:greengrocer/src/pages_routes/app_pages.dart';
 
@@ -127,28 +128,41 @@ class SignInScreen extends StatelessWidget {
                         // SizedBox para definir altura e largura
                         SizedBox(
                           height: 50,
-                          child: ElevatedButton(
-                            // Estilização do botão ElevatedButton
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18)),
-                            ),
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                String email = emailController.text;
-                                String password = passwordController.text;
+                          child: GetX<AuthController>(
+                            builder: (authController) {
+                              return ElevatedButton(
+                                // Estilização do botão ElevatedButton
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18)),
+                                ),
+                                onPressed: authController.isLoading.value
+                                    ? null
+                                    : () {
+                                        // ao clicar ele retira o teclado da tela
+                                        FocusScope.of(context).unfocus();
+                                        print("Teste");
+                                        if (_formKey.currentState!.validate()) {
+                                          String email = emailController.text;
+                                          String password =
+                                              passwordController.text;
 
-                                print('Email: $email - Senha: $password');
-                              } else {
-                                print('Campos não são validos!');
-                              }
+                                          authController.signIn(
+                                              email: email, password: password);
+                                        } else {
+                                          print('Campos não são validos!');
+                                        }
 
-                              //Get.offNamed(PagesRoutes.baseRoute);
+                                        //Get.offNamed(PagesRoutes.baseRoute);
+                                      },
+                                child: authController.isLoading.value
+                                    ? const CircularProgressIndicator()
+                                    : const Text(
+                                        'Entrar',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                              );
                             },
-                            child: const Text(
-                              'Entrar',
-                              style: TextStyle(fontSize: 18),
-                            ),
                           ),
                         ),
                         // Estrutura do "esqueceu a senha"
