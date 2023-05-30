@@ -5,7 +5,7 @@ import 'package:greengrocer/src/pages/auth/controller/auth_controller.dart';
 import 'package:greengrocer/src/pages/common_widgets/app_name_widget.dart';
 import 'package:greengrocer/src/pages_routes/app_pages.dart';
 
-import '../../config/custom_colors.dart';
+import '../../../config/custom_colors.dart';
 
 import 'package:greengrocer/src/pages/common_widgets/custom_text_field.dart';
 
