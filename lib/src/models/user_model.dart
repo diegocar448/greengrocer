@@ -1,15 +1,31 @@
 class UserModel {
-  String name;
-  String email;
-  String phone;
-  String cpf;
-  String password;
+  String? name;
+  String? email;
+  String? phone;
+  String? cpf;
+  String? password;
+  String? id;
+  String? token;
 
   UserModel({
-    required this.name,
-    required this.email,
-    required this.phone,
-    required this.cpf,
-    required this.password,
+    this.name,
+    this.email,
+    this.phone,
+    this.cpf,
+    this.password,
+    this.id,
+    this.token,
   });
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      cpf: map['cpf'],
+      email: map['email'],
+      id: map['id'],
+      name: map['name'],
+      token: map['token'],
+      phone: map['phone'],
+      password: map['password'],
+    );
+  }
 }
