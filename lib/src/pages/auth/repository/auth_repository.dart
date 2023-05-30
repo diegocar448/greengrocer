@@ -15,8 +15,10 @@ class AuthRepository {
 
     if (result['result'] != null) {
       print('SignIn funcionou!');
+      print(result);
     } else {
       print('SignIn não funcionou!');
+      print(result['error']);
     }
   }
 }
