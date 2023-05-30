@@ -141,7 +141,7 @@ class SignInScreen extends StatelessWidget {
                                     : () {
                                         // ao clicar ele retira o teclado da tela
                                         FocusScope.of(context).unfocus();
-                                        print("Teste");
+
                                         if (_formKey.currentState!.validate()) {
                                           String email = emailController.text;
                                           String password =
@@ -150,7 +150,7 @@ class SignInScreen extends StatelessWidget {
                                           authController.signIn(
                                               email: email, password: password);
                                         } else {
-                                          print('Campos não são validos!');
+                                          //print('Campos não são validos!');
                                         }
 
                                         //Get.offNamed(PagesRoutes.baseRoute);
