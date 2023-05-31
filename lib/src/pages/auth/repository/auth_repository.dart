@@ -1,5 +1,8 @@
 import 'package:greengrocer/src/constants/endpoints.dart';
 import 'package:greengrocer/src/models/user_model.dart';
+import 'package:greengrocer/src/pages/auth/repository/auth_errors.dart'
+    as AuthErrors;
+import 'package:greengrocer/src/pages/auth/result/auth_result.dart';
 import 'package:greengrocer/src/services/http_manager.dart';
 
 class AuthRepository {
@@ -15,20 +18,12 @@ class AuthRepository {
     );
 
     if (result['result'] != null) {
-      // ignore: avoid_print
-      print('SignIn funcionou!');
-      // ignore: avoid_print
-      print(result);
-
       final user = UserModel.fromMap(result['result']);
-
-      // ignore: avoid_print
       print(user);
+      print('aqui entrou');
+      return AuthResult.success(user);
     } else {
-      // ignore: avoid_print
-      print('SignIn não funcionou!');
-      // ignore: avoid_print
-      print(result['error']);
+      return AuthResult.error(AuthErrors.authErrorsString(result['error']));
     }
   }
 }

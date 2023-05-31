@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:greengrocer/src/pages/auth/repository/auth_repository.dart';
+import 'package:greengrocer/src/pages/auth/result/auth_result.dart';
 
 class AuthController extends GetxController {
   /* 
@@ -13,8 +14,18 @@ class AuthController extends GetxController {
     isLoading.value = true;
 
     // o retorno da api
-    await authRepository.signIn(email: email, password: password);
+    AuthResult result =
+        await authRepository.signIn(email: email, password: password);
 
     isLoading.value = false;
+
+    result.when(
+      success: (user) {
+        print(user);
+      },
+      error: (message) {
+        print(message);
+      },
+    );
   }
 }
