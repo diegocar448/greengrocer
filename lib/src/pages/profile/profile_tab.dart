@@ -40,7 +40,7 @@ class _ProfileTabState extends State<ProfileTab> {
           // Nome
           CustomTextField(
             readOnly: false,
-            initialValue: app_data.user.fullname,
+            initialValue: app_data.user.name,
             icon: Icons.person,
             label: 'Nome',
           ),
