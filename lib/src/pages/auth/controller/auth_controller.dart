@@ -17,6 +17,33 @@ class AuthController extends GetxController {
 
   UserModel user = UserModel();
 
+  Future<void> validateToken({required String token}) async {
+    // pegar o token salvo localmente
+    AuthResult result = await authRepository.validateToken(token: token);
+
+    isLoading.value = false;
+
+    result.when(
+      success: (user) {
+        // ignore: avoid_print
+        this.user = user;
+
+        // Aqui ele remove todas views anteriores e rediciona para home
+        Get.offAllNamed(PagesRoutes.baseRoute);
+      },
+      error: (message) {
+        // aqui teremos a mensagem de erro ou nao, definido na propriedade isError
+        // utilsServices.showToast(
+        //   message: message,
+        //   isError: true,
+        // );
+
+        // ignore: avoid_print
+        print(message);
+      },
+    );
+  }
+
   Future<void> signIn({required String email, required String password}) async {
     isLoading.value = true;
 
