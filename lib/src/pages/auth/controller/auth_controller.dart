@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:greengrocer/src/pages/auth/repository/auth_repository.dart';
 import 'package:greengrocer/src/pages/auth/result/auth_result.dart';
+import 'package:greengrocer/src/services/utils_services.dart';
 
 class AuthController extends GetxController {
   /* 
@@ -9,6 +10,7 @@ class AuthController extends GetxController {
   RxBool isLoading = false.obs;
 
   final authRepository = AuthRepository();
+  final utilsServices = UtilsServices();
 
   Future<void> signIn({required String email, required String password}) async {
     isLoading.value = true;
@@ -25,6 +27,12 @@ class AuthController extends GetxController {
         print(user);
       },
       error: (message) {
+        // aqui teremos a mensagem de erro ou nao, definido na propriedade isError
+        utilsServices.showToast(
+          message: message,
+          isError: true,
+        );
+
         // ignore: avoid_print
         print(message);
       },

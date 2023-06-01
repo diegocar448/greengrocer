@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'auth_result.dart';
 
@@ -24,8 +24,8 @@ mixin _$AuthResult {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UserModel user)? success,
-    TResult Function(String message)? error,
+    TResult? Function(UserModel user)? success,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$AuthResult {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,40 +60,42 @@ mixin _$AuthResult {
 abstract class $AuthResultCopyWith<$Res> {
   factory $AuthResultCopyWith(
           AuthResult value, $Res Function(AuthResult) then) =
-      _$AuthResultCopyWithImpl<$Res>;
+      _$AuthResultCopyWithImpl<$Res, AuthResult>;
 }
 
 /// @nodoc
-class _$AuthResultCopyWithImpl<$Res> implements $AuthResultCopyWith<$Res> {
+class _$AuthResultCopyWithImpl<$Res, $Val extends AuthResult>
+    implements $AuthResultCopyWith<$Res> {
   _$AuthResultCopyWithImpl(this._value, this._then);
 
-  final AuthResult _value;
   // ignore: unused_field
-  final $Res Function(AuthResult) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
 abstract class _$$SuccessCopyWith<$Res> {
   factory _$$SuccessCopyWith(_$Success value, $Res Function(_$Success) then) =
       __$$SuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({UserModel user});
 }
 
 /// @nodoc
-class __$$SuccessCopyWithImpl<$Res> extends _$AuthResultCopyWithImpl<$Res>
+class __$$SuccessCopyWithImpl<$Res>
+    extends _$AuthResultCopyWithImpl<$Res, _$Success>
     implements _$$SuccessCopyWith<$Res> {
   __$$SuccessCopyWithImpl(_$Success _value, $Res Function(_$Success) _then)
-      : super(_value, (v) => _then(v as _$Success));
+      : super(_value, _then);
 
-  @override
-  _$Success get _value => super._value as _$Success;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = freezed,
+    Object? user = null,
   }) {
     return _then(_$Success(
-      user == freezed
+      null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
@@ -119,15 +121,15 @@ class _$Success implements Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Success &&
-            const DeepCollectionEquality().equals(other.user, user));
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$SuccessCopyWith<_$Success> get copyWith =>
       __$$SuccessCopyWithImpl<_$Success>(this, _$identity);
 
@@ -143,8 +145,8 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UserModel user)? success,
-    TResult Function(String message)? error,
+    TResult? Function(UserModel user)? success,
+    TResult? Function(String message)? error,
   }) {
     return success?.call(user);
   }
@@ -174,8 +176,8 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
   }) {
     return success?.call(this);
   }
@@ -207,24 +209,24 @@ abstract class Success implements AuthResult {
 abstract class _$$ErrorCopyWith<$Res> {
   factory _$$ErrorCopyWith(_$Error value, $Res Function(_$Error) then) =
       __$$ErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$ErrorCopyWithImpl<$Res> extends _$AuthResultCopyWithImpl<$Res>
+class __$$ErrorCopyWithImpl<$Res>
+    extends _$AuthResultCopyWithImpl<$Res, _$Error>
     implements _$$ErrorCopyWith<$Res> {
   __$$ErrorCopyWithImpl(_$Error _value, $Res Function(_$Error) _then)
-      : super(_value, (v) => _then(v as _$Error));
+      : super(_value, _then);
 
-  @override
-  _$Error get _value => super._value as _$Error;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
     return _then(_$Error(
-      message == freezed
+      null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -250,15 +252,15 @@ class _$Error implements Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Error &&
-            const DeepCollectionEquality().equals(other.message, message));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ErrorCopyWith<_$Error> get copyWith =>
       __$$ErrorCopyWithImpl<_$Error>(this, _$identity);
 
@@ -274,8 +276,8 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UserModel user)? success,
-    TResult Function(String message)? error,
+    TResult? Function(UserModel user)? success,
+    TResult? Function(String message)? error,
   }) {
     return error?.call(message);
   }
@@ -305,8 +307,8 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
   }) {
     return error?.call(this);
   }

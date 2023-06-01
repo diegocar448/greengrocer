@@ -6,7 +6,6 @@ part of 'user_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-// ignore: unused_element
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       name: json['fullname'] as String?,
       email: json['email'] as String?,
@@ -17,7 +16,6 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       token: json['token'] as String?,
     );
 
-// ignore: unused_element
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'fullname': instance.name,
       'email': instance.email,

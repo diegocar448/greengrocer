@@ -1,6 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_model.g.dart';
@@ -47,7 +44,7 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      name: map['name'] != null ? map['name'] as String : null,
+      name: map['fullname'] != null ? map['fullname'] as String : null,
       email: map['email'] != null ? map['email'] as String : null,
       phone: map['phone'] != null ? map['phone'] as String : null,
       cpf: map['cpf'] != null ? map['cpf'] as String : null,
@@ -57,8 +54,8 @@ class UserModel {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }

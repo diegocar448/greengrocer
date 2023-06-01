@@ -17,7 +17,9 @@ class AuthRepository {
         "password": password,
       },
     );
-
+    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    print(result);
+    print('#########################################');
     if (result['result'] != null) {
       final user = UserModel.fromMap(result['result']);
       // ignore: avoid_print
