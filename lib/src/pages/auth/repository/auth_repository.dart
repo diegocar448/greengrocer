@@ -1,6 +1,7 @@
 import 'package:greengrocer/src/constants/endpoints.dart';
 import 'package:greengrocer/src/models/user_model.dart';
 import 'package:greengrocer/src/pages/auth/repository/auth_errors.dart'
+    // ignore: library_prefixes
     as AuthErrors;
 import 'package:greengrocer/src/pages/auth/result/auth_result.dart';
 import 'package:greengrocer/src/services/http_manager.dart';
@@ -19,7 +20,9 @@ class AuthRepository {
 
     if (result['result'] != null) {
       final user = UserModel.fromMap(result['result']);
+      // ignore: avoid_print
       print(user);
+      // ignore: avoid_print
       print('aqui entrou');
       return AuthResult.success(user);
     } else {

@@ -21,9 +21,11 @@ class AuthController extends GetxController {
 
     result.when(
       success: (user) {
+        // ignore: avoid_print
         print(user);
       },
       error: (message) {
+        // ignore: avoid_print
         print(message);
       },
     );
