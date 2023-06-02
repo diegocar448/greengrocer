@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:greengrocer/src/constants/storage_key.dart';
 import 'package:greengrocer/src/pages/auth/repository/auth_repository.dart';
 import 'package:greengrocer/src/pages/auth/result/auth_result.dart';
 import 'package:greengrocer/src/pages_routes/app_pages.dart';
@@ -17,31 +18,29 @@ class AuthController extends GetxController {
 
   UserModel user = UserModel();
 
-  Future<void> validateToken({required String token}) async {
+  Future<void> validateToken() async {
     // pegar o token salvo localmente
-    AuthResult result = await authRepository.validateToken(token: token);
+    String? token = await utilsServices.getLocalData(key: StorageKeys.token);
 
-    isLoading.value = false;
+    if (token == null) {
+      Get.offAllNamed(PagesRoutes.signInRoute);
+      return;
+    }
+
+    AuthResult result = await authRepository.validateToken(token);
 
     result.when(
-      success: (user) {
-        // ignore: avoid_print
-        this.user = user;
-
-        // Aqui ele remove todas views anteriores e rediciona para home
-        Get.offAllNamed(PagesRoutes.baseRoute);
-      },
-      error: (message) {
-        // aqui teremos a mensagem de erro ou nao, definido na propriedade isError
-        // utilsServices.showToast(
-        //   message: message,
-        //   isError: true,
-        // );
-
-        // ignore: avoid_print
-        print(message);
-      },
+      success: (user) {},
+      error: (message) {},
     );
+  }
+
+  void saveTokenAndProccedToBase() {
+    // Salvar token localmente
+    utilsServices.saveLocalData(key: StorageKeys.token, data: user.token!);
+
+    // Aqui ele remove todas views anteriores e rediciona para home
+    Get.offAllNamed(PagesRoutes.baseRoute);
   }
 
   Future<void> signIn({required String email, required String password}) async {
@@ -58,15 +57,17 @@ class AuthController extends GetxController {
         // ignore: avoid_print
         this.user = user;
 
-        // Aqui ele remove todas views anteriores e rediciona para home
-        Get.offAllNamed(PagesRoutes.baseRoute);
+        // Aqui ele remove todas views anteriores,
+        //  armazena o token e rediciona para home
+        saveTokenAndProccedToBase();
+        //Get.offAllNamed(PagesRoutes.baseRoute);
       },
       error: (message) {
         // aqui teremos a mensagem de erro ou nao, definido na propriedade isError
-        // utilsServices.showToast(
-        //   message: message,
-        //   isError: true,
-        // );
+        utilsServices.showToast(
+          message: message,
+          isError: true,
+        );
 
         // ignore: avoid_print
         print(message);

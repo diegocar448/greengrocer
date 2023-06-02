@@ -11,20 +11,21 @@ class AuthRepository {
 
   // Metodo de validacao do token
   Future<AuthResult> validateToken(String token) async {
-    final result = await _httpManager.restRequest(
-        url: Endpoints.validateToken,
-        method: HttpMethods.post,
-        headers: {
-          'X-Parse-Session-Token': token,
-        });
+    // final result = await _httpManager.restRequest(
+    //     url: Endpoints.validateToken,
+    //     method: HttpMethods.post,
+    //     headers: {
+    //       'X-Parse-Session-Token': token,
+    //     });
 
-    if (result['result'] != null) {
-      final user = UserModel.fromMap(result['result']);
+    // if (result['result'] != null) {
+    //   final user = UserModel.fromMap(result['result']);
 
-      return AuthResult.success(user);
-    } else {
-      return AuthResult.error(AuthErrors.authErrorsString(result['error']));
-    }
+    //   return AuthResult.success(user);
+    // } else {
+    //   return AuthResult.error(AuthErrors.authErrorsString(result['error']));
+    // }
+    // return 'teste';
   }
 
   // Metodo de autenticacao
