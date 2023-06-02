@@ -31,8 +31,21 @@ class AuthController extends GetxController {
 
     result.when(
       success: (user) {},
-      error: (message) {},
+      error: (message) {
+        signOut();
+      },
     );
+  }
+
+  Future<void> signOut() async {
+    // Zerar o user, deixando as variaveis como nullable
+    user = UserModel();
+
+    // Remover o token local
+    await utilsServices.removeLocalData(key: StorageKeys.token);
+
+    // Ir para o logijn
+    Get.offAllNamed(PagesRoutes.signInRoute);
   }
 
   void saveTokenAndProccedToBase() {
