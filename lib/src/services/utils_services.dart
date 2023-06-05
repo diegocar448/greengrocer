@@ -1,5 +1,7 @@
 //import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -39,18 +41,18 @@ class UtilsServices {
 
   // apresentar o toast
   void showToast({required String message, bool isError = false}) {
-    // Fluttertoast.showToast(
-    //   msg: message,
-    //   toastLength: Toast.LENGTH_SHORT,
-    //   gravity: ToastGravity.BOTTOM,
-    //   timeInSecForIosWeb: 3,
-    //   backgroundColor: isError ? Colors.red : Colors.white,
-    //   //webBgColor: isError ? '#6A5ACD' : '#FFFFFF',
-    //   textColor: isError ? Colors.white : Colors.black,
-    //   webPosition: 'center',
-    //   fontSize: 14,
-    //   // Adicione essa propriedade para exibir o botão de fechar no toast
-    //   webShowClose: true,
-    // );
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 3,
+      backgroundColor: isError ? Colors.red : Colors.white,
+      //webBgColor: isError ? '#6A5ACD' : '#FFFFFF',
+      textColor: isError ? Colors.white : Colors.black,
+      webPosition: 'center',
+      fontSize: 14,
+      // Adicione essa propriedade para exibir o botão de fechar no toast
+      webShowClose: true,
+    );
   }
 }

@@ -11,6 +11,7 @@ class CustomTextField extends StatefulWidget {
   final bool readOnly;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final TextInputType? textInputType;
 
   //como os atributos acima são final, então o nosso construtor será um const
   const CustomTextField({
@@ -25,6 +26,7 @@ class CustomTextField extends StatefulWidget {
     this.readOnly = false,
     this.validator,
     this.controller,
+    this.textInputType,
   }) : super(key: key);
 
   @override
@@ -59,6 +61,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         obscureText: isObscure,
         /* Loca que fará a validação */
         validator: widget.validator,
+        keyboardType: widget.textInputType,
         decoration: InputDecoration(
           //aqui adicinamos o Icone no InputDecoration
           prefixIcon: Icon(widget.icon),

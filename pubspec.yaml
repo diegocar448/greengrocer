@@ -50,7 +50,9 @@ dependencies:
   freezed_annotation: ^2.2.0
   freezed: ^2.0.4
   build_runner: ^2.4.4
+  fluttertoast: ^8.0.8
   flutter_secure_storage: ^8.0.0
+  flutter_secure_storage_macos: ^3.0.0
   
 dev_dependencies:
   flutter_test:
