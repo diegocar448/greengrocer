@@ -108,7 +108,10 @@ class SignUpScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(18),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                /** Aqui tera o validate em todos os campos */
+                                _formKey.currentState!.validate();
+                              },
                               child: const Text(
                                 'Cadastrar Usuário',
                                 style: TextStyle(
