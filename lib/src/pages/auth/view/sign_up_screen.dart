@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
+import 'package:greengrocer/src/pages/auth/controller/auth_controller.dart';
 import 'package:greengrocer/src/pages/common_widgets/custom_text_field.dart';
 import 'package:greengrocer/src/services/validators.dart';
 
@@ -23,6 +25,9 @@ class SignUpScreen extends StatelessWidget {
   );
 
   final _formKey = GlobalKey<FormState>();
+
+  //Buscar a memoria
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -69,22 +74,34 @@ class SignUpScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          const CustomTextField(
+                          CustomTextField(
                             icon: Icons.email,
                             label: 'Email',
                             textInputType: TextInputType.emailAddress,
                             validator: emailValidator,
+                            onSaved: (value) {
+                              //Aqui adicionamos o nosso value para o email na camada de controllers
+                              authController.user.email = value;
+                            },
                           ),
-                          const CustomTextField(
+                          CustomTextField(
                             icon: Icons.lock,
                             label: 'Senha',
                             isSecret: true,
                             validator: passwordValidator,
+                            onSaved: (value) {
+                              //Aqui adicionamos o nosso value para o password na camada de controllers
+                              authController.user.password = value;
+                            },
                           ),
-                          const CustomTextField(
+                          CustomTextField(
                             icon: Icons.person,
                             label: 'Nome',
                             validator: nameValidator,
+                            onSaved: (value) {
+                              //Aqui adicionamos o nosso value para o name na camada de controllers
+                              authController.user.name = value;
+                            },
                           ),
                           CustomTextField(
                             icon: Icons.phone,
@@ -92,6 +109,10 @@ class SignUpScreen extends StatelessWidget {
                             inputFormatters: [phoneFormatter],
                             textInputType: TextInputType.phone,
                             validator: phoneValidator,
+                            onSaved: (value) {
+                              //Aqui adicionamos o nosso value para o celular na camada de controllers
+                              authController.user.phone = value;
+                            },
                           ),
                           CustomTextField(
                             icon: Icons.file_copy,
@@ -99,27 +120,44 @@ class SignUpScreen extends StatelessWidget {
                             inputFormatters: [cpfFormatter],
                             textInputType: TextInputType.number,
                             validator: cpfValidator,
+                            onSaved: (value) {
+                              //Aqui adicionamos o nosso value para o cpf na camada de controllers
+                              authController.user.cpf = value;
+                            },
                           ),
                           SizedBox(
-                            height: 50,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18),
-                                ),
-                              ),
-                              onPressed: () {
-                                /** Aqui tera o validate em todos os campos */
-                                _formKey.currentState!.validate();
-                              },
-                              child: const Text(
-                                'Cadastrar Usuário',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                          ),
+                              height: 50,
+                              child: Obx(() {
+                                return ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18),
+                                    ),
+                                  ),
+                                  onPressed: authController.isLoading.value
+                                      ? null
+                                      : () {
+                                          /** Remover o teclado apos clicar em cadastrar */
+                                          FocusScope.of(context).unfocus();
+
+                                          /** Aqui tera o validate em todos os campos */
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            _formKey.currentState!.save();
+
+                                            //authController.signUp();
+                                          }
+                                        },
+                                  child: authController.isLoading.value
+                                      ? const CircularProgressIndicator()
+                                      : const Text(
+                                          'Cadastrar Usuário',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                );
+                              })),
                         ],
                       ),
                     ),

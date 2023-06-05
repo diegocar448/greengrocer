@@ -10,6 +10,7 @@ class CustomTextField extends StatefulWidget {
   final String? initialValue;
   final bool readOnly;
   final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
   final TextEditingController? controller;
   final TextInputType? textInputType;
 
@@ -25,6 +26,7 @@ class CustomTextField extends StatefulWidget {
     this.initialValue,
     this.readOnly = false,
     this.validator,
+    this.onSaved,
     this.controller,
     this.textInputType,
   }) : super(key: key);
@@ -61,6 +63,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         obscureText: isObscure,
         /* Loca que fará a validação */
         validator: widget.validator,
+        onSaved: widget.onSaved,
         keyboardType: widget.textInputType,
         decoration: InputDecoration(
           //aqui adicinamos o Icone no InputDecoration
