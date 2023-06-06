@@ -8,12 +8,12 @@ import 'package:get/get.dart';
 import 'package:greengrocer/src/pages/common_widgets/app_name_widget.dart';
 import 'package:greengrocer/src/pages/common_widgets/custom_shimmer.dart';
 
-import 'package:greengrocer/src/pages/home/components/item_tile.dart';
+import 'package:greengrocer/src/pages/home/view/components/item_tile.dart';
 import 'package:greengrocer/src/pages/home/controller/home_controller.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
 //import 'package:badges/badges.dart' as packageBadge; //<=== AQUI O ALIAS
 
-import '../../config/custom_colors.dart';
+import '../../../config/custom_colors.dart';
 import 'components/category_tile.dart';
 import 'package:greengrocer/src/config/app_data.dart' as app_data;
 
