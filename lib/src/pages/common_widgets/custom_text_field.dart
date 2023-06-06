@@ -13,6 +13,7 @@ class CustomTextField extends StatefulWidget {
   final void Function(String?)? onSaved;
   final TextEditingController? controller;
   final TextInputType? textInputType;
+  final GlobalKey<FormFieldState>? formFieldKey;
 
   //como os atributos acima são final, então o nosso construtor será um const
   const CustomTextField({
@@ -29,6 +30,7 @@ class CustomTextField extends StatefulWidget {
     this.onSaved,
     this.controller,
     this.textInputType,
+    this.formFieldKey,
   }) : super(key: key);
 
   @override
@@ -52,6 +54,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
+        key: widget.formFieldKey,
         controller: widget.controller,
         readOnly: widget.readOnly,
         /* Vai adicionar o texto no nosso campo de texto assim que for criado */
