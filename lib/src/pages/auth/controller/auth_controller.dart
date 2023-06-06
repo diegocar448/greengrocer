@@ -44,6 +44,10 @@ class AuthController extends GetxController {
     );
   }
 
+  Future<void> resetPassword(String email) async {
+    await authRepository.resetPassword(email);
+  }
+
   Future<void> signOut() async {
     // Zerar o user, deixando as variaveis como nullable
     user = UserModel();
@@ -51,7 +55,7 @@ class AuthController extends GetxController {
     // Remover o token local
     await utilsServices.removeLocalData(key: StorageKeys.token);
 
-    // Ir para o logijn
+    // Ir para o login
     Get.offAllNamed(PagesRoutes.signInRoute);
   }
 
