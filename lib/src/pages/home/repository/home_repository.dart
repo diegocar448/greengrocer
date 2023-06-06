@@ -6,7 +6,7 @@ import 'package:greengrocer/src/services/http_manager.dart';
 class HomeRepository {
   final HttpManager _httpManager = HttpManager();
   //recuperar todas as categorias
-  getAllCategories() async {
+  Future<HomeResult<CategoryModel>> getAllCategories() async {
     final result = await _httpManager.restRequest(
       url: Endpoints.getAllCategories,
       method: HttpMethods.post,
@@ -17,7 +17,7 @@ class HomeRepository {
       // em outra lista q é de categorias
       // ignore: unused_local_variable
       List<CategoryModel> data =
-          (result['result'] as List<Map<String, dynamic>>)
+          (List<Map<String, dynamic>>.from(result['result']))
               .map(CategoryModel.fromJson)
               .toList();
 
