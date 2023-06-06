@@ -37,7 +37,9 @@ class AuthController extends GetxController {
     AuthResult result = await authRepository.validateToken(token);
 
     result.when(
-      success: (user) {},
+      success: (user) {
+        return Get.offAllNamed(PagesRoutes.baseRoute);
+      },
       error: (message) {
         signOut();
       },
