@@ -38,6 +38,7 @@ class AuthController extends GetxController {
 
     result.when(
       success: (user) {
+        //ajuste
         return Get.offAllNamed(PagesRoutes.baseRoute);
       },
       error: (message) {
