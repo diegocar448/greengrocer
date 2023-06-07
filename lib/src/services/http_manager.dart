@@ -40,7 +40,7 @@ class HttpManager {
 
       // Retorno do resultado do backend
       return response.data;
-      // ignore: empty_catches, unused_catch_clause
+      // ignore: empty_catches, unused_catch_clause, deprecated_member_use
     } on DioError catch (error) {
       // Retorno do erro do dio request
       return error.response?.data ?? {};
