@@ -171,7 +171,7 @@ class _HomeTabState extends State<HomeTab> {
               },
             ),
             // Grid
-            GetBuilder<HomeController>(builder: (controller) {
+            /* GetBuilder<HomeController>(builder: (controller) {
               return Expanded(
                 child: !controller.isLoading
                     ? GridView.builder(
@@ -209,7 +209,7 @@ class _HomeTabState extends State<HomeTab> {
                         ),
                       ),
               );
-            }),
+            }), */
           ],
         ),
       ),
