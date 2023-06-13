@@ -71,7 +71,7 @@ class HomeController extends GetxController {
     Map<String, dynamic> body = {
       "page": 0,
       "title": null,
-      "categoryId": "5mjkt5ERRo",
+      "categoryId": "aGN3NQKlXp",
       "itemsPerPage": 6,
     };
 
