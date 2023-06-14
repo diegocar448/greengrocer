@@ -11,21 +11,26 @@ class HomeController extends GetxController {
   final homeRepository = HomeRepository();
   final utilsServices = UtilsServices();
 
-  bool isLoading = false;
+  bool isCategoryLoading = false;
+  bool isProductLoading = true;
   List<CategoryModel> allCategories = [];
   CategoryModel? currentCategory;
   List<ItemModel> get allProducts => currentCategory?.items ?? [];
 
-  // Aqui alteramos o estado de isLoading
-  void setLoading(bool value) {
-    isLoading = value;
-
+  // Aqui alteramos o estado de isCategoryLoading
+  void setLoading(bool value, {bool isProduct = false}) {
+    if (isProduct) {
+      isCategoryLoading = value;
+    } else {
+      isProductLoading = value;
+    }
     /** no getx sempre chamamos o update para atualizar
      * nesse exemplo com getBuilder
      */
     update();
   }
 
+  // Aqui é o momento que iniciamos a nossa classe
   @override
   void onInit() {
     super.onInit();
@@ -36,6 +41,10 @@ class HomeController extends GetxController {
   void selectCategory(CategoryModel category) {
     currentCategory = category;
     update();
+
+    // if (currentCategory!.items.isNotEmpty) {
+    //   return;
+    // }
 
     getAllProducts();
   }
@@ -69,7 +78,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> getAllProducts() async {
-    setLoading(true);
+    setLoading(true, isProduct: true);
 
     Map<String, dynamic> body = {
       'page': currentCategory!.pagination,
@@ -79,7 +88,7 @@ class HomeController extends GetxController {
 
     HomeResult<ItemModel> result = await homeRepository.getAllProducts(body);
 
-    setLoading(false);
+    setLoading(false, isProduct: true);
 
     result.when(
       success: (data) {
