@@ -171,7 +171,7 @@ class _HomeTabState extends State<HomeTab> {
               },
             ),
             // Grid
-            /* GetBuilder<HomeController>(builder: (controller) {
+            GetBuilder<HomeController>(builder: (controller) {
               return Expanded(
                 child: !controller.isLoading
                     ? GridView.builder(
@@ -184,10 +184,10 @@ class _HomeTabState extends State<HomeTab> {
                           crossAxisSpacing: 10,
                           childAspectRatio: 9 / 11.5,
                         ),
-                        itemCount: controller.allCategories.length,
+                        itemCount: controller.allProducts.length,
                         itemBuilder: (_, index) {
                           return ItemTile(
-                            item: app_data.items[index],
+                            item: controller.allProducts[index],
                             cartAnimationMethod: itemSelectedCartAnimations,
                           );
                         },
@@ -209,7 +209,7 @@ class _HomeTabState extends State<HomeTab> {
                         ),
                       ),
               );
-            }), */
+            }),
           ],
         ),
       ),

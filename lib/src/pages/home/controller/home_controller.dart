@@ -14,6 +14,7 @@ class HomeController extends GetxController {
   bool isLoading = false;
   List<CategoryModel> allCategories = [];
   CategoryModel? currentCategory;
+  List<ItemModel> get allProducts => currentCategory?.items ?? [];
 
   // Aqui alteramos o estado de isLoading
   void setLoading(bool value) {
@@ -82,7 +83,8 @@ class HomeController extends GetxController {
 
     result.when(
       success: (data) {
-        print(data);
+        /** setamos a lista de itens */
+        currentCategory!.items = data;
       },
       error: (message) {
         utilsServices.showToast(

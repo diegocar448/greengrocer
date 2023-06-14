@@ -64,7 +64,12 @@ class _ItemTileState extends State<ItemTile> {
                     /* Aqui adicionamos a nossa animação Hero */
                     child: Hero(
                       tag: widget.item.imgUrl,
-                      child: Image.asset(
+                      // child: Image.asset(
+                      //   widget.item.imgUrl,
+                      //   key: imageGk,
+                      // ),
+                      // network para pegar imagens remotas
+                      child: Image.network(
                         widget.item.imgUrl,
                         key: imageGk,
                       ),
