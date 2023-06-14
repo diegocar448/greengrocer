@@ -17,6 +17,9 @@ class HomeController extends GetxController {
   CategoryModel? currentCategory;
   List<ItemModel> get allProducts => currentCategory?.items ?? [];
 
+  //variavel observavel
+  RxString searchTitle = ''.obs;
+
   bool get isLastPage {
     if (currentCategory!.items.length < itemsPerPage) {
       return true;
@@ -41,6 +44,15 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
+    //delay de 600 mili. para evitar excesso de requisições
+    debounce(
+      searchTitle,
+      (_) {
+        print(searchTitle);
+      },
+      time: const Duration(milliseconds: 600),
+    );
 
     getAllCategories();
   }
