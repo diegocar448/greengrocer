@@ -17,6 +17,13 @@ class HomeController extends GetxController {
   CategoryModel? currentCategory;
   List<ItemModel> get allProducts => currentCategory?.items ?? [];
 
+  bool get isLastPage {
+    if (currentCategory!.items.length < itemsPerPage) {
+      return true;
+    }
+    return currentCategory!.pagination * itemsPerPage > allProducts.length;
+  }
+
   // Aqui alteramos o estado de isCategoryLoading
   void setLoading(bool value, {bool isProduct = false}) {
     if (isProduct) {
@@ -77,8 +84,17 @@ class HomeController extends GetxController {
     );
   }
 
-  Future<void> getAllProducts() async {
-    setLoading(true, isProduct: true);
+  // para paginar: (se for 1 então será 2, se for 3 então será 4)
+  void loadMoreProducts() {
+    currentCategory!.pagination++;
+
+    getAllProducts(canLoad: false);
+  }
+
+  Future<void> getAllProducts({bool canLoad = true}) async {
+    if (canLoad) {
+      setLoading(true, isProduct: true);
+    }
 
     Map<String, dynamic> body = {
       'page': currentCategory!.pagination,
@@ -92,8 +108,8 @@ class HomeController extends GetxController {
 
     result.when(
       success: (data) {
-        /** setamos a lista de itens */
-        currentCategory!.items = data;
+        /** setamos a lista de itens (addAll vai setar os itens restantes sem precisar carregar todos o items da lista do zero)*/
+        currentCategory!.items.addAll(data);
       },
       error: (message) {
         utilsServices.showToast(
