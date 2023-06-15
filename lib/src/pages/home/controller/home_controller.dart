@@ -96,6 +96,44 @@ class HomeController extends GetxController {
     );
   }
 
+  // Codigo que vai pesquisar pelo titulo
+  void filterByTitle() {
+    // Apagar todos os produtos de categorias
+    for (var category in allCategories) {
+      category.items.clear();
+      category.pagination = 0;
+    }
+
+    // remover o primeiro item evitando duplicidade da categorias
+    if (searchTitle.value.isEmpty) {
+      allCategories.removeAt(0);
+    } else {
+      // verifica se a categoria Todos('') ja existe
+      // Caso exista nao precisará criar novamente
+      CategoryModel? c = allCategories.firstWhereOrNull((cat) => cat.id == '');
+
+      if (c == null) {
+        // Criar uma nova categoria com todos
+        final allProductsCategory = CategoryModel(
+          title: 'Todos',
+          id: '',
+          items: [],
+          pagination: 0,
+        );
+
+        allCategories.insert(0, allProductsCategory);
+      } else {
+        c.items.clear();
+        c.pagination = 0;
+      }
+    }
+
+    currentCategory = allCategories.first;
+    update();
+
+    getAllCategories();
+  }
+
   // para paginar: (se for 1 então será 2, se for 3 então será 4)
   void loadMoreProducts() {
     currentCategory!.pagination++;
