@@ -129,7 +129,8 @@ class HomeController extends GetxController {
     currentCategory = allCategories.first;
     update();
 
-    getAllCategories();
+    //getAllCategories();
+    getAllProducts();
   }
 
   // para paginar: (se for 1 então será 2, se for 3 então será 4)

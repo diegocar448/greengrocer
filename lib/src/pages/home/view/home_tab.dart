@@ -201,6 +201,17 @@ class _HomeTabState extends State<HomeTab> {
                     ? Visibility(
                         visible: (controller.currentCategory?.items ?? [])
                             .isNotEmpty,
+                        replacement: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.search_off,
+                              size: 40,
+                              color: CustomColors.customSwatchColor,
+                            ),
+                            const Text('Nâo ha itens para apresentar'),
+                          ],
+                        ),
                         child: GridView.builder(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                           physics: const BouncingScrollPhysics(),
@@ -222,17 +233,6 @@ class _HomeTabState extends State<HomeTab> {
                               cartAnimationMethod: itemSelectedCartAnimations,
                             );
                           },
-                        ),
-                        replacement: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.search_off,
-                              size: 40,
-                              color: CustomColors.customSwatchColor,
-                            ),
-                            const Text('Nâo ha itens para apresentar'),
-                          ],
                         ),
                       )
                     : GridView.count(

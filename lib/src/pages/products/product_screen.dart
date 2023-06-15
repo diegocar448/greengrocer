@@ -35,7 +35,8 @@ class _ProductScreenState extends State<ProductScreen> {
                 /* Aqui adicionamos a nossa animação Hero */
                 child: Hero(
                   tag: widget.item.imgUrl,
-                  child: Image.asset(widget.item.imgUrl),
+                  //child: Image.asset(widget.item.imgUrl),
+                  child: Image.network(widget.item.imgUrl),
                 ),
               ),
               Expanded(
