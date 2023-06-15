@@ -27,6 +27,8 @@ class _HomeTabState extends State<HomeTab> {
   // Chave global obrigatoria usada no plugin add_to_cart_animation
   GlobalKey<CartIconKey> globalKeyCartItems = GlobalKey<CartIconKey>();
 
+  final searchController = TextEditingController();
+
   final UtilsServices utilsServices = UtilsServices();
 
   late Function(GlobalKey) runAddToCardAnimation;
@@ -35,8 +37,6 @@ class _HomeTabState extends State<HomeTab> {
   void itemSelectedCartAnimations(GlobalKey gkImage) {
     runAddToCardAnimation(gkImage);
   }
-
-  final controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -94,38 +94,61 @@ class _HomeTabState extends State<HomeTab> {
         child: Column(
           children: [
             // Campo pesquisa
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
-              ),
-              child: TextFormField(
-                onChanged: (value) {
-                  controller.searchTitle.value = value;
-                },
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  isDense: true,
-                  hintText: 'Pesquse Aqui...',
-                  hintStyle: TextStyle(
-                    color: Colors.grey.shade400,
-                    fontSize: 14,
+            GetBuilder<HomeController>(
+              builder: (controller) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
                   ),
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: CustomColors.customContrastColor,
-                    size: 21,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(60),
-                    borderSide: const BorderSide(
-                      width: 0,
-                      style: BorderStyle.none,
+                  child: TextFormField(
+                    controller: searchController,
+                    onChanged: (value) {
+                      controller.searchTitle.value = value;
+                    },
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      isDense: true,
+                      hintText: 'Pesquise Aqui...',
+                      hintStyle: TextStyle(
+                        color: Colors.grey.shade400,
+                        fontSize: 14,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: CustomColors.customContrastColor,
+                        size: 21,
+                      ),
+                      suffixIcon: controller.searchTitle.value.isNotEmpty
+                          ?
+                          //Botão para remover caracteres a cada milli:600
+                          IconButton(
+                              onPressed: () {
+                                searchController.clear();
+                                controller.searchTitle.value = '';
+
+                                //fechar o teclado
+                                FocusScope.of(context).unfocus();
+                              },
+                              icon: Icon(
+                                Icons.close,
+                                color: CustomColors.customContrastColor,
+                                size: 21,
+                              ),
+                            )
+                          : null,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(60),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
             // Categorias
             GetBuilder<HomeController>(
