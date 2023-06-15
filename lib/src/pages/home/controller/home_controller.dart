@@ -48,9 +48,7 @@ class HomeController extends GetxController {
     //delay de 600 mili. para evitar excesso de requisições
     debounce(
       searchTitle,
-      (_) {
-        update();
-      },
+      (_) => filterByTitle(),
       time: const Duration(milliseconds: 600),
     );
 
@@ -61,9 +59,9 @@ class HomeController extends GetxController {
     currentCategory = category;
     update();
 
-    // if (currentCategory!.items.isNotEmpty) {
-    //   return;
-    // }
+    if (currentCategory!.items.isNotEmpty) {
+      return;
+    }
 
     getAllProducts();
   }
@@ -104,12 +102,12 @@ class HomeController extends GetxController {
       category.pagination = 0;
     }
 
-    // remover o primeiro item evitando duplicidade da categorias
+    /** clicamos e removemos o primeiro item evitando duplicidade da categorias */
     if (searchTitle.value.isEmpty) {
       allCategories.removeAt(0);
     } else {
-      // verifica se a categoria Todos('') ja existe
-      // Caso exista nao precisará criar novamente
+      /** verifica se a categoria Todos('') ja existe */
+      /** Caso exista nao precisará criar novamente */
       CategoryModel? c = allCategories.firstWhereOrNull((cat) => cat.id == '');
 
       if (c == null) {
@@ -148,9 +146,19 @@ class HomeController extends GetxController {
 
     Map<String, dynamic> body = {
       'page': currentCategory!.pagination,
-      "categoryId": currentCategory!.id,
-      "itemsPerPage": itemsPerPage,
+      'categoryId': currentCategory!.id,
+      'itemsPerPage': itemsPerPage,
     };
+
+    // Verificar antes se há algo digitado no campo de pesquisa
+    if (searchTitle.value.isNotEmpty) {
+      body['title'] = searchTitle.value;
+
+      // se for null entao estamos usando a categoria todos
+      if (currentCategory!.id == '') {
+        body.remove('categoryId');
+      }
+    }
 
     HomeResult<ItemModel> result = await homeRepository.getAllProducts(body);
 

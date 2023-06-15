@@ -54,6 +54,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   flutter_secure_storage_macos: ^3.0.0
   
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
