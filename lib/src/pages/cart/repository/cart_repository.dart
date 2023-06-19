@@ -1,5 +1,5 @@
 import 'package:greengrocer/src/constants/endpoints.dart';
-import 'package:greengrocer/src/pages/cart/cart_result/cart_result.dart';
+
 import 'package:greengrocer/src/services/http_manager.dart';
 
 class CartRepository {
