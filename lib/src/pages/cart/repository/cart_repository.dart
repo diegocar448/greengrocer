@@ -5,8 +5,10 @@ import 'package:greengrocer/src/services/http_manager.dart';
 class CartRepository {
   final _httpManager = HttpManager();
 
-  Future<CartResult<List>> getCartItems(
-      {required String token, required String userId}) async {
+  Future getCartItems({
+    required String token,
+    required String userId,
+  }) async {
     final result = await _httpManager.restRequest(
       url: Endpoints.getCartItems,
       method: HttpMethods.post,
