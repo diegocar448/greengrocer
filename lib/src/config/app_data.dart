@@ -68,28 +68,28 @@ List<ItemModel> items = [
   papaya,
 ];
 
-// List<String> categories = [
-//   'Frutas',
-//   'Grãos',
-//   'Verduras',
-//   'Temperos',
-//   'Cereais',
-// ];
-
-List<CartItemModel> cartItems = [
-  CartItemModel(
-    item: apple,
-    quantity: 1,
-  ),
-  CartItemModel(
-    item: mango,
-    quantity: 1,
-  ),
-  CartItemModel(
-    item: guava,
-    quantity: 3,
-  ),
+List<String> categories = [
+  'Frutas',
+  'Grãos',
+  'Verduras',
+  'Temperos',
+  'Cereais',
 ];
+
+// List<CartItemModel> cartItems = [
+//   CartItemModel(
+//     item: apple,
+//     quantity: 1,
+//   ),
+//   CartItemModel(
+//     item: mango,
+//     quantity: 1,
+//   ),
+//   CartItemModel(
+//     item: guava,
+//     quantity: 3,
+//   ),
+// ];
 
 UserModel user = UserModel(
   phone: '99 9 9999-9999',
@@ -98,48 +98,48 @@ UserModel user = UserModel(
   name: 'New User',
   password: '',
 );
-List<OrderModel> orders = [
-  // Pedido 01
-  OrderModel(
-    copyAndPaste: 'q1w2e3r4t5y6',
-    createdDateTime: DateTime.parse(
-      '2022-06-08 10:00:10.458',
-    ),
-    overdueDateTime: DateTime.parse(
-      '2024-06-08 11:00:10.458',
-    ),
-    id: 'asd6a54da6s2d1',
-    status: 'delivered',
-    total: 11.0,
-    items: [
-      CartItemModel(
-        item: apple,
-        quantity: 2,
-      ),
-      CartItemModel(
-        item: mango,
-        quantity: 2,
-      ),
-    ],
-  ),
+// List<OrderModel> orders = [
+//   // Pedido 01
+//   OrderModel(
+//     copyAndPaste: 'q1w2e3r4t5y6',
+//     createdDateTime: DateTime.parse(
+//       '2022-06-08 10:00:10.458',
+//     ),
+//     overdueDateTime: DateTime.parse(
+//       '2024-06-08 11:00:10.458',
+//     ),
+//     id: 'asd6a54da6s2d1',
+//     status: 'delivered',
+//     total: 11.0,
+//     items: [
+//       CartItemModel(
+//         item: apple,
+//         quantity: 2,
+//       ),
+//       CartItemModel(
+//         item: mango,
+//         quantity: 2,
+//       ),
+//     ],
+//   ),
 
-  // Pedido 02
-  OrderModel(
-    copyAndPaste: 'q1w2e3r4t5y6',
-    createdDateTime: DateTime.parse(
-      '2022-06-08 10:00:10.458',
-    ),
-    overdueDateTime: DateTime.parse(
-      '2024-06-08 11:00:10.458',
-    ),
-    id: 'a65s4d6a2s1d6a5s',
-    status: 'pending_payment',
-    total: 11.5,
-    items: [
-      CartItemModel(
-        item: guava,
-        quantity: 1,
-      ),
-    ],
-  ),
-];
+//   // Pedido 02
+//   OrderModel(
+//     copyAndPaste: 'q1w2e3r4t5y6',
+//     createdDateTime: DateTime.parse(
+//       '2022-06-08 10:00:10.458',
+//     ),
+//     overdueDateTime: DateTime.parse(
+//       '2024-06-08 11:00:10.458',
+//     ),
+//     id: 'a65s4d6a2s1d6a5s',
+//     status: 'pending_payment',
+//     total: 11.5,
+//     items: [
+//       CartItemModel(
+//         item: guava,
+//         quantity: 1,
+//       ),
+//     ],
+//   ),
+// ];

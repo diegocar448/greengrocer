@@ -18,19 +18,19 @@ class _CartTabState extends State<CartTab> {
   final UtilsServices utilsServices = UtilsServices();
 
   void removeItemFromCart(CartItemModel cartItem) {
-    setState(() {
-      app_data.cartItems.remove(cartItem);
+    // setState(() {
+    //   app_data.cartItems.remove(cartItem);
 
-      utilsServices.showToast(
-          message: '${cartItem.item.itemName} removido(a) do carrinho');
-    });
+    //   utilsServices.showToast(
+    //       message: '${cartItem.item.itemName} removido(a) do carrinho');
+    // });
   }
 
   double cartTotalPrice() {
     double total = 0;
-    for (var item in app_data.cartItems) {
-      total += item.totalPrice();
-    }
+    // for (var item in app_data.cartItems) {
+    //   total += item.totalPrice();
+    // }
 
     return total;
   }
@@ -46,12 +46,13 @@ class _CartTabState extends State<CartTab> {
           Expanded(
             // Listar Produtos
             child: ListView.builder(
-              itemCount: app_data.cartItems.length,
+              itemCount: 0, //app_data.cartItems.length,
               itemBuilder: (_, index) {
-                return CartTile(
-                  cartItem: app_data.cartItems[index],
-                  remove: removeItemFromCart,
-                );
+                return Container();
+                // return CartTile(
+                //   cartItem: app_data.cartItems[index],
+                //   remove: removeItemFromCart,
+                // );
               },
             ),
           ),
@@ -87,40 +88,40 @@ class _CartTabState extends State<CartTab> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
-                  height: 50,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: CustomColors.customSwatchColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                    ),
-                    onPressed: () async {
-                      bool? result = await showOrderConfirmation();
-                      //await showOrderConfirmation();
-                      if (result ?? false) {
-                        // ignore: use_build_context_synchronously
-                        showDialog(
-                            context: context,
-                            builder: (_) {
-                              return PaymentDialog(
-                                order: app_data.orders.first,
-                              );
-                            });
-                      } else {
-                        utilsServices.showToast(
-                            message: 'Pedido não confirmado', isError: true);
-                      }
-                    },
-                    child: const Text(
-                      'Concluir pedido',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ),
+                // SizedBox(
+                //   height: 50,
+                //   child: ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: CustomColors.customSwatchColor,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(18),
+                //       ),
+                //     ),
+                //     onPressed: () async {
+                //       bool? result = await showOrderConfirmation();
+                //       //await showOrderConfirmation();
+                //       if (result ?? false) {
+                //         // ignore: use_build_context_synchronously
+                //         showDialog(
+                //             context: context,
+                //             builder: (_) {
+                //               return PaymentDialog(
+                //                 order: app_data.orders.first,
+                //               );
+                //             });
+                //       } else {
+                //         utilsServices.showToast(
+                //             message: 'Pedido não confirmado', isError: true);
+                //       }
+                //     },
+                //     child: const Text(
+                //       'Concluir pedido',
+                //       style: TextStyle(
+                //         fontSize: 18,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
