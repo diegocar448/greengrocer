@@ -31,7 +31,6 @@ class AuthController extends GetxController {
 
     if (token == null || token == '') {
       await Get.offAllNamed(PagesRoutes.signInRoute);
-
       return;
     }
 

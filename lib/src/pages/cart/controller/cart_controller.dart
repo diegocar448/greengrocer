@@ -30,9 +30,9 @@ class CartController extends GetxController {
       cartItems = data;
       update();
 
-      print(data);
+      //print(data);
     }, error: (message) {
-      utilsServices.showToast(message: message, isError: true);
+      //utilsServices.showToast(message: message, isError: true);
     });
   }
 }
