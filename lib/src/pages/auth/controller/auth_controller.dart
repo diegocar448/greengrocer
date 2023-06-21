@@ -62,9 +62,10 @@ class AuthController extends GetxController {
     Get.offAllNamed(PagesRoutes.signInRoute);
   }
 
-  void saveTokenAndProccedToBase() {
+  Future<void> saveTokenAndProccedToBase() async {
     // Salvar token localmente
-    utilsServices.saveLocalData(key: StorageKeys.token, data: user.token!);
+    var teste = await utilsServices.saveLocalData(
+        key: StorageKeys.token, data: user.token!);
 
     // Aqui ele remove todas views anteriores e rediciona para home
     Get.offAllNamed(PagesRoutes.baseRoute);
