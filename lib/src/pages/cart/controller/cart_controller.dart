@@ -20,19 +20,23 @@ class CartController extends GetxController {
   }
 
   Future<void> getCartItem() async {
-    final CartResult<List<CartItemModel>> result =
-        await cartRepository.getCartItems(
-      token: authController.user.token!,
-      userId: authController.user.id!,
-    );
+    if (authController.user != null &&
+        authController.user.token != null &&
+        authController.user.id != null) {
+      final CartResult<List<CartItemModel>> result =
+          await cartRepository.getCartItems(
+        token: authController.user.token!,
+        userId: authController.user.id!,
+      );
 
-    result.when(success: (data) {
-      cartItems = data;
-      update();
+      result.when(success: (data) {
+        cartItems = data;
+        update();
 
-      //print(data);
-    }, error: (message) {
-      //utilsServices.showToast(message: message, isError: true);
-    });
+        //print(data);
+      }, error: (message) {
+        utilsServices.showToast(message: message, isError: true);
+      });
+    }
   }
 }
