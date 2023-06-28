@@ -20,15 +20,6 @@ class CartTab extends StatefulWidget {
 class _CartTabState extends State<CartTab> {
   final UtilsServices utilsServices = UtilsServices();
 
-  void removeItemFromCart(CartItemModel cartItem) {
-    // setState(() {
-    //   app_data.cartItems.remove(cartItem);
-
-    //   utilsServices.showToast(
-    //       message: '${cartItem.item.itemName} removido(a) do carrinho');
-    // });
-  }
-
   double cartTotalPrice() {
     double total = 0;
     // for (var item in app_data.cartItems) {
@@ -55,7 +46,6 @@ class _CartTabState extends State<CartTab> {
                   itemBuilder: (_, index) {
                     return CartTile(
                       cartItem: controller.cartItems[index],
-                      remove: removeItemFromCart,
                     );
                   },
                 );
@@ -86,13 +76,19 @@ class _CartTabState extends State<CartTab> {
                     fontSize: 12,
                   ),
                 ),
-                Text(
-                  utilsServices.priceToCurrency(cartTotalPrice()),
-                  style: TextStyle(
-                    fontSize: 23,
-                    color: CustomColors.customSwatchColor,
-                    fontWeight: FontWeight.bold,
-                  ),
+                GetBuilder<CartController>(
+                  builder: (controller) {
+                    return Text(
+                      utilsServices.priceToCurrency(
+                        controller.cartTotalPrice(),
+                      ),
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: CustomColors.customSwatchColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(
                   height: 50,
