@@ -30,6 +30,19 @@ class CartController extends GetxController {
     return total;
   }
 
+  Future<bool> changeItemQuantity({
+    CartItemModel? item,
+    int? quantity,
+  }) async {
+    final result = await cartRepository.changeItemQuantity(
+      token: authController.user.id!,
+      cartItemId: item!.id,
+      quantity: quantity!,
+    );
+
+    return result;
+  }
+
   Future<void> getCartItem() async {
     final CartResult<List<CartItemModel>> result =
         await cartRepository.getCartItems(
@@ -46,8 +59,9 @@ class CartController extends GetxController {
     });
   }
 
+  /** Verificando os Ids dos produtos */
   int getItemIndex(ItemModel item) {
-    return cartItems.indexWhere((itemInList) => itemInList.id == item.id);
+    return cartItems.indexWhere((itemInList) => itemInList.item.id == item.id);
   }
 
   Future<void> addItemToCart(
@@ -56,7 +70,19 @@ class CartController extends GetxController {
 
     if (itemIndex >= 0) {
       // Já existe  na listagem
-      cartItems[itemIndex].quantity += quantity;
+      final product = cartItems[itemIndex];
+
+      final result = await changeItemQuantity(
+          item: product, quantity: (product.quantity + quantity));
+
+      if (result) {
+        cartItems[itemIndex].quantity += quantity;
+      } else {
+        utilsServices.showToast(
+          message: 'Ocorreu um erro ao alterar a quantidade do produto',
+          isError: true,
+        );
+      }
     } else {
       final CartResult<String> result = await cartRepository.addItemToCart(
         userId: authController.user.id!,
