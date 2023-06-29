@@ -35,7 +35,7 @@ class CartController extends GetxController {
     int? quantity,
   }) async {
     final result = await cartRepository.changeItemQuantity(
-      token: authController.user.id!,
+      token: authController.user.token!,
       cartItemId: item!.id,
       quantity: quantity!,
     );

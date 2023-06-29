@@ -51,7 +51,9 @@ class CartRepository {
         headers: {
           'X-Parse-Session-Token': token,
         });
-
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    print(token);
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     return result.isEmpty;
   }
 
