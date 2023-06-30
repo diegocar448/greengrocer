@@ -11,9 +11,6 @@ class CartRepository {
     required String token,
     required String userId,
   }) async {
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
-    print("getCartItems CartRepository");
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
     final result = await _httpManager.restRequest(
       url: Endpoints.getCartItems,
       method: HttpMethods.post,

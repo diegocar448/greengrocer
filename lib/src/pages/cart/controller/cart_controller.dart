@@ -50,10 +50,6 @@ class CartController extends GetxController {
       userId: authController.user.id!,
     );
 
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
-    print("getCartItems CartController");
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
-
     result.when(success: (data) {
       cartItems = data;
     }, error: (message) {

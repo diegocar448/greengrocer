@@ -10,9 +10,6 @@ class AuthRepository {
   final HttpManager _httpManager = HttpManager();
 
   AuthResult handleUserOrError(Map<dynamic, dynamic> result) {
-    print("OOOOOOOOOOOOOOOOOOOOOOOOOO");
-    print("handleUserOrError");
-    print("OOOOOOOOOOOOOOOOOOOOOOOOOO");
     if (result['result'] != null) {
       final user = UserModel.fromMap(result['result']);
 
@@ -51,10 +48,6 @@ class AuthRepository {
         "password": password,
       },
     );
-
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
-    print("signIn Repository");
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
 
     return handleUserOrError(result);
   }

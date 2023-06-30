@@ -13,10 +13,6 @@ class HomeRepository {
       method: HttpMethods.post,
     );
 
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
-    print("getAllCategories Repository");
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
-
     if (result['result'] != null) {
       // Vamos mapear esse lista e transformar em
       // em outra lista q é de categorias
@@ -41,10 +37,6 @@ class HomeRepository {
       method: HttpMethods.post,
       body: body,
     );
-
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
-    print("getAllProducts Repository");
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
 
     if (result['result'] != null) {
       List<ItemModel> data = List<Map<String, dynamic>>.from(result['result'])

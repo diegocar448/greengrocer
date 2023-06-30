@@ -16,12 +16,13 @@ class CartTab extends StatefulWidget {
 
 class _CartTabState extends State<CartTab> {
   final UtilsServices utilsServices = UtilsServices();
+  final cartController = Get.find<CartController>();
 
   double cartTotalPrice() {
     double total = 0;
-    // for (var item in app_data.cartItems) {
-    //   total += item.totalPrice();
-    // }
+    for (var item in cartController.cartItems) {
+      total += item.totalPrice();
+    }
 
     return total;
   }

@@ -29,8 +29,8 @@ class AuthController extends GetxController {
     // pegar o token salvo localmente
     String? token = await utilsServices.getLocalData(key: StorageKeys.token);
 
-    if (token == null || token == '') {
-      await Get.offAllNamed(PagesRoutes.signInRoute);
+    if (token == null) {
+      Get.offAllNamed(PagesRoutes.signInRoute);
       return;
     }
 
