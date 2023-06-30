@@ -17,7 +17,7 @@ class CartController extends GetxController {
   void onInit() {
     super.onInit();
 
-    getCartItem();
+    getCartItems();
   }
 
   double cartTotalPrice() {
@@ -43,20 +43,24 @@ class CartController extends GetxController {
     return result;
   }
 
-  Future<void> getCartItem() async {
+  Future<void> getCartItems() async {
     final CartResult<List<CartItemModel>> result =
         await cartRepository.getCartItems(
       token: authController.user.token!,
       userId: authController.user.id!,
     );
 
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
+    print("getCartItems CartController");
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
+
     result.when(success: (data) {
       cartItems = data;
-
-      update();
     }, error: (message) {
       utilsServices.showToast(message: message, isError: true);
     });
+
+    update();
   }
 
   /** Verificando os Ids dos produtos */

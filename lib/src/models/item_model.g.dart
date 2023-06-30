@@ -8,11 +8,11 @@ part of 'item_model.dart';
 
 ItemModel _$ItemModelFromJson(Map<String, dynamic> json) => ItemModel(
       id: json['id'] as String? ?? '',
-      description: json['description'] as String,
-      imgUrl: json['picture'] as String,
       itemName: json['title'] as String,
-      price: (json['price'] as num).toDouble(),
+      imgUrl: json['picture'] as String,
       unit: json['unit'] as String,
+      price: (json['price'] as num).toDouble(),
+      description: json['description'] as String,
     );
 
 Map<String, dynamic> _$ItemModelToJson(ItemModel instance) => <String, dynamic>{

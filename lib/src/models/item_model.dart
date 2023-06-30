@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'item_model.g.dart';
 
@@ -7,7 +7,6 @@ part 'item_model.g.dart';
 class ItemModel {
   String id;
 
-  // aqui pegar o title para atribuir a nossa itemName
   @JsonKey(name: 'title')
   String itemName;
 
@@ -20,17 +19,16 @@ class ItemModel {
 
   ItemModel({
     this.id = '',
-    required this.description,
-    required this.imgUrl,
     required this.itemName,
-    required this.price,
+    required this.imgUrl,
     required this.unit,
+    required this.price,
+    required this.description,
   });
-  // metodo de recuperacao de dados ↓↓↓↓↓
-  // pegar um Map e transformar em objeto
+
   factory ItemModel.fromJson(Map<String, dynamic> json) =>
       _$ItemModelFromJson(json);
-  // pegar objeto e transformar em Map
+
   Map<String, dynamic> toJson() => _$ItemModelToJson(this);
 
   @override

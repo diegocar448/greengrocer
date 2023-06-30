@@ -74,6 +74,10 @@ class HomeController extends GetxController {
 
     setLoading(false);
 
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
+    print("getAllCategories Controller");
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
+
     homeResult.when(
       success: (data) {
         allCategories.assignAll(data);
@@ -162,6 +166,10 @@ class HomeController extends GetxController {
     }
 
     HomeResult<ItemModel> result = await homeRepository.getAllProducts(body);
+
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
+    print("getAllProducts Controller");
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++");
 
     setLoading(false, isProduct: true);
 

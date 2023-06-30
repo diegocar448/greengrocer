@@ -64,7 +64,7 @@ class AuthController extends GetxController {
 
   Future<void> saveTokenAndProccedToBase() async {
     // Salvar token localmente
-    var teste = await utilsServices.saveLocalData(
+    await utilsServices.saveLocalData(
         key: StorageKeys.token, data: user.token!);
 
     // Aqui ele remove todas views anteriores e rediciona para home
