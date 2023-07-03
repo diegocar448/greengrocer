@@ -1,4 +1,6 @@
 //import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -37,6 +39,11 @@ class UtilsServices {
     /* adicionamos add_Hm para mostrar tbm a hora e os minutos */
     DateFormat dateFormat = DateFormat.yMd('pt_BR').add_Hm();
     return dateFormat.format(dateTime);
+  }
+
+  decodeQrCodeImage(String value) {
+    String base64String = value.split(',').last;
+    return base64.decode(base64String);
   }
 
   // apresentar o toast

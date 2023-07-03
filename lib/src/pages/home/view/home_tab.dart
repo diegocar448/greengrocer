@@ -63,7 +63,7 @@ class _HomeTabState extends State<HomeTab> {
                     badgeColor: CustomColors.customContrastColor,
                     badgeContent: Text(
                       controller.cartItems.length.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 12,
                       ),
