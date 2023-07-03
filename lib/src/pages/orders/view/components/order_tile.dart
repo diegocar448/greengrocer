@@ -27,11 +27,16 @@ class OrderTile extends StatelessWidget {
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         /** widget abre e fecha */
         child: GetBuilder<OrderController>(
-          init: OrderController(),
+          init: OrderController(order),
           global: false,
           builder: (controller) {
             return ExpansionTile(
-              // initiallyExpanded: order.status == 'pending_payment' ? false : true,
+              /* Evento quando abrir e fechar o Card */
+              onExpansionChanged: (value) {
+                if (value && order.items.isEmpty) {
+                  controller.getOrderItems();
+                } else {}
+              },
               title: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,104 +54,113 @@ class OrderTile extends StatelessWidget {
               /** Aqui adicionamos uma borda como um model de um quadro */
               childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                /** 
+              children: controller.isLoading
+                  ? [
+                      Container(
+                        height: 80,
+                        alignment: Alignment.center,
+                        child: const CircularProgressIndicator(),
+                      ),
+                    ]
+                  : [
+                      /** 
                    *  com o IntrinsicHeight terá um crescimento intrínseco para pode visualizar a barra vertical
                    *  assim vai permitir o seu crescimento sem ocorrer um overflow
                    * */
-                IntrinsicHeight(
-                  child: Row(
-                    children: [
-                      // Lista de produtos
-                      Expanded(
-                        /* Aqui vai (flex) determinar a proporção do tamanho do Expanded */
-                        flex: 3,
-                        child: SizedBox(
-                          height: 150,
-                          child: ListView(
-                            children: order.items.map((orderItem) {
-                              return _OrderItemWidget(
-                                utilsServices: utilsServices,
-                                orderItem: orderItem,
-                              );
-                            }).toList(),
+                      IntrinsicHeight(
+                        child: Row(
+                          children: [
+                            // Lista de produtos
+                            Expanded(
+                              /* Aqui vai (flex) determinar a proporção do tamanho do Expanded */
+                              flex: 3,
+                              child: SizedBox(
+                                height: 150,
+                                child: ListView(
+                                  children: order.items.map((orderItem) {
+                                    return _OrderItemWidget(
+                                      utilsServices: utilsServices,
+                                      orderItem: orderItem,
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
+
+                            // Divisao
+                            /** Seria uma linha para separar horizontalmente as duas Expanded */
+                            VerticalDivider(
+                              color: Colors.grey.shade300,
+                              /** Espessura do nosso divider */
+                              thickness: 2,
+                              /** Espaçamento lateral */
+                              width: 8,
+                            ),
+
+                            // Status do pedido
+                            Expanded(
+                              /* Aqui vai (flex) determinar a proporção do tamanho do Expanded */
+                              flex: 2,
+                              child: OrderStatusWidget(
+                                status: order.status,
+                                /** se o valor venceu então retornamos true */
+                                isOverdue: order.overdueDateTime
+                                    .isBefore(DateTime.now()),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      //Total
+                      Text.rich(
+                        TextSpan(
+                          /** aplicar style aqui irá refletir sobre todo os elementos filhos */
+                          style: const TextStyle(
+                            fontSize: 20,
                           ),
+                          children: [
+                            const TextSpan(
+                              text: 'Total ',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextSpan(
+                              text: utilsServices.priceToCurrency(order.total),
+                            ),
+                          ],
                         ),
                       ),
 
-                      // Divisao
-                      /** Seria uma linha para separar horizontalmente as duas Expanded */
-                      VerticalDivider(
-                        color: Colors.grey.shade300,
-                        /** Espessura do nosso divider */
-                        thickness: 2,
-                        /** Espaçamento lateral */
-                        width: 8,
-                      ),
-
-                      // Status do pedido
-                      Expanded(
-                        /* Aqui vai (flex) determinar a proporção do tamanho do Expanded */
-                        flex: 2,
-                        child: OrderStatusWidget(
-                          status: order.status,
-                          /** se o valor venceu então retornamos true */
-                          isOverdue:
-                              order.overdueDateTime.isBefore(DateTime.now()),
+                      //Botão pagamento
+                      Visibility(
+                        visible: order.status == 'pending_payment' &&
+                            !order.isOverDue,
+                        child: ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (_) {
+                                return PaymentDialog(
+                                  order: order,
+                                );
+                              },
+                            );
+                          },
+                          icon: Image.asset(
+                            'assets/app_images/pix.png',
+                            height: 18,
+                          ),
+                          label: const Text('Ver QR Code Pix'),
                         ),
-                      ),
+                      )
                     ],
-                  ),
-                ),
-
-                //Total
-                Text.rich(
-                  TextSpan(
-                    /** aplicar style aqui irá refletir sobre todo os elementos filhos */
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
-                    children: [
-                      const TextSpan(
-                        text: 'Total ',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      TextSpan(
-                        text: utilsServices.priceToCurrency(order.total),
-                      ),
-                    ],
-                  ),
-                ),
-
-                //Botão pagamento
-                Visibility(
-                  visible: order.status == 'pending_payment',
-                  child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (_) {
-                          return PaymentDialog(
-                            order: order,
-                          );
-                        },
-                      );
-                    },
-                    icon: Image.asset(
-                      'assets/app_images/pix.png',
-                      height: 18,
-                    ),
-                    label: const Text('Ver QR Code Pix'),
-                  ),
-                )
-              ],
             );
           },
         ),

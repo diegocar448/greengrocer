@@ -114,7 +114,7 @@ class CartController extends GetxController {
     update();
   }
 
-  /** Verificando os Ids dos produtos */
+  /* Verificando os Ids dos produtos */
   int getItemIndex(ItemModel item) {
     return cartItems.indexWhere((itemInList) => itemInList.item.id == item.id);
   }
