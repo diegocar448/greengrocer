@@ -38,7 +38,7 @@ class UtilsServices {
 
     /* adicionamos add_Hm para mostrar tbm a hora e os minutos */
     DateFormat dateFormat = DateFormat.yMd('pt_BR').add_Hm();
-    return dateFormat.format(dateTime);
+    return dateFormat.format(dateTime.toLocal());
   }
 
   decodeQrCodeImage(String value) {
